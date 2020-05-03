@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+  <mat-sidenav #sideNav>
+    <app-sidnav-list (sideNavClose)="sideNav.close()"></app-sidnav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (sideNavToggle)="sideNav.toggle()">
+
+    </app-header>
+    <main>
+      <div class="spacer"></div>
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      <h2>Footer !!</h2>
+    </footer>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,109 @@
+<div class="container">
+
+  <mat-card class="main-card">
+
+    <mat-card-header>
+      <mat-card-title>Nouveau patient</mat-card-title>
+      <mat-card-subtitle>Veuillez remplir le formulaire</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #patientForm="ngForm" (ngSubmit)="onAddPatient(patientForm.value)">
+
+        <mat-form-field   >
+          <mat-label>Nom:</mat-label>
+          <input matInput name="nom" ngModel #nom="ngModel">
+          <mat-hint>*</mat-hint>
+          <mat-error *ngIf="nom.invalid">Ce champ est obligatoire.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field   >
+          <mat-label>Prenom:</mat-label>
+          <input matInput name="prenom" ngModel #prenom="ngModel">
+          <mat-hint>*</mat-hint>
+          <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
+        </mat-form-field>
+        <br>
+
+          <mat-form-field >
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+212 &nbsp;</span>
+            <input matInput type="tel" name="tel" ngModel  placeholder="655533205">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+
+        <mat-form-field id="date">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput name="date_naissance" ngModel [matDatepicker]="picker" #date_naissance="ngModel">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint>*</mat-hint>
+          <mat-error *ngIf="date_naissance.invalid">Ce champ est obligatoire.</mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput [formControl]="emailFormControl" name="email" ngModel
+          [errorStateMatcher]="matcher" placeholder="Ex. pat@gmail.com">
+          <mat-error *ngIf="emailFormControl.hasError('email')">
+            Veuillez entrer une adresse email valide
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field   >
+          <mat-label>Adresse:</mat-label>
+          <input matInput name="adresse" ngModel #adresse="ngModel">
+          <mat-hint>*</mat-hint>
+          <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field   >
+          <mat-label>Identifiant:</mat-label>
+          <input matInput name="identification" ngModel #identification="ngModel">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Type d'identifiant</mat-label>
+          <mat-select name="typeId" ngModel  #typeId="ngModel">
+            <mat-option value="CIN">CIN</mat-option>
+            <mat-option value="Permis">Permis</mat-option>
+            <mat-option value="Passeport">Passeport</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Mutuelle</mat-label>
+          <mat-select name="mutuel" ngModel  #mutuel="ngModel">
+            <mat-option value="">Aucune</mat-option>
+            <mat-option value="1">Cnss</mat-option>
+            <mat-option value="2">Cnops</mat-option>
+            <mat-option value="3">Amo</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Sexe</mat-label>
+          <mat-select name="sexe" ngModel  #sexe="ngModel">
+            <mat-option value="Homme">Homme</mat-option>
+            <mat-option value="Femme">Femme</mat-option>
+          </mat-select>
+          <mat-hint>*</mat-hint>
+          <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
+        </mat-form-field>
+        <br>
+
+        <div class="example-button-row">
+         <button mat-raised-button color='primary' [mat-dialog-close] type="submit">Valider</button>
+         <button mat-raised-button color='primary' [mat-dialog-close] >Annuler</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <mat-hint>(*): Champ obligatoire.</mat-hint>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

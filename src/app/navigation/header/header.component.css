@@ -1,0 +1,17 @@
+.divRight{
+  padding-right: 2rem;
+  position: absolute;
+  right: 0;
+}
+
+.divLeft{
+  padding-left: 1rem;
+}
+a{
+  margin-left: 1rem;
+  color: rgb(0, 0, 0);
+}
+a:hover{
+  color: rgb(58, 14, 14);
+
+}

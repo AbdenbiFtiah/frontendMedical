@@ -1,0 +1,58 @@
+<mat-nav-list  class="sideNav">
+    <a mat-list-item class="mat-elevation-z1"  (click)="onSidenavClose()">
+     <mat-icon>
+      menu
+     </mat-icon>
+     <span>Menu</span>
+
+    </a>
+    <mat-divider></mat-divider>
+    <a mat-list-item href="#" class="mat-elevation-z1" (click)="onSidenavClose()">
+      <mat-icon>
+        fingerprint
+      </mat-icon>
+      <span>Se connecter</span>
+
+    </a>
+    <mat-divider></mat-divider>
+
+    <a mat-list-item class="mat-elevation-z1" routerLink="/Patients" (click)="onSidenavClose()">
+      <mat-icon>
+        menu
+      </mat-icon>
+      <span>Patients</span>
+    </a>
+    <mat-divider></mat-divider>
+    <a mat-list-item class="mat-elevation-z1" routerLink="/Prestations" (click)="onSidenavClose()">
+      <mat-icon>
+        menu
+      </mat-icon>
+      <span>Prestations</span>
+
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <a mat-list-item class="mat-elevation-z1" href="#" (click)="onSidenavClose()">
+      <mat-icon>
+        feedback
+      </mat-icon>
+      <span>feedback</span>
+    </a>
+    <mat-divider></mat-divider>
+
+    <a mat-list-item class="mat-elevation-z1" href="#" (click)="onSidenavClose()">
+      <mat-icon>
+        payment
+      </mat-icon>
+      <span>payement</span>
+    </a>
+    <mat-divider></mat-divider>
+
+    <a mat-list-item class="mat-elevation-z1" href="#" (click)="onSidenavClose()">
+      <mat-icon>
+        language
+      </mat-icon>
+      <span>langues</span>
+    </a>
+</mat-nav-list>

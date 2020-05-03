@@ -1,0 +1,36 @@
+
+
+.container{
+  padding: 2rem;
+}
+table,mat-paginator {
+  width: 80%;
+  margin: auto;
+
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.example-button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+
+/*
+.mat-header-row{
+  background-color: rgb(63,81,181);
+
+}
+.centered{
+  margin: auto;
+
+}
+.mat-row:nth-child(even){
+  background-color: gray;
+  }
+
+.mat-row:nth-child(odd){
+  background-color: blanchedalmond;
+  } */

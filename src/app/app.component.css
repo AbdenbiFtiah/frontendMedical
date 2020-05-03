@@ -1,0 +1,16 @@
+mat-sidenav-container{
+  height: 700px;
+
+}
+mat-sidenav{
+  width: 250px;
+}
+main{
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
