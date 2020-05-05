@@ -24,7 +24,7 @@ export class AddPatientComponent {
   constructor( private ressourceService: RessourceService, private dialog: MatDialog) { }
 
   onAddPatient(value: any) {
-    value.mutuel= JSON.parse(" {\"id\":"+value.mutuel+ " }");
+    value.mutuel = JSON.parse(" {\"id\":"+value.mutuel+ " }");
     this.ressourceService.saveRessource(this.ressourceService.host + '/patients', value)
     .subscribe(res => {
     }, err => {

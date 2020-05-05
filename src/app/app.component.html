@@ -3,17 +3,15 @@
     <app-sidnav-list (sideNavClose)="sideNav.close()"></app-sidnav-list>
 
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content fxLayout="column">
     <app-header (sideNavToggle)="sideNav.toggle()">
-
     </app-header>
     <main>
       <div class="spacer"></div>
       <router-outlet></router-outlet>
     </main>
-    <footer>
-      <h2>Footer !!</h2>
-    </footer>
+
+    <app-footer fxFlexOffset="auto"></app-footer>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

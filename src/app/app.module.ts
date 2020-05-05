@@ -13,6 +13,7 @@ import { AddPrestationComponent } from './prestations/add-prestation/add-prestat
 import { PrestationAddedComponent } from './prestations/prestation-added/prestation-added.component';
 import { ShowPatientsComponent } from './patients/show-patients/show-patients.component';
 import { AddPatientComponent } from './patients/add-patient/add-patient.component';
+import { FooterComponent } from './navigation/footer/footer.component';
 
 
 
@@ -27,6 +28,7 @@ import { AddPatientComponent } from './patients/add-patient/add-patient.componen
     PrestationAddedComponent,
     ShowPatientsComponent,
     AddPatientComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
