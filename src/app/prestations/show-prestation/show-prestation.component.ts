@@ -40,7 +40,7 @@ export class ShowPrestationComponent implements OnInit {
     // });
 
     this.prestationService.getPrestations().subscribe((data) => {
-        this.dataSource = new MatTableDataSource<Prestation>(data._embedded.prestations);
+        this.dataSource = new MatTableDataSource<Prestation>(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log(data);

@@ -36,7 +36,7 @@ export class ShowPatientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientService.getPatients().subscribe((data) => {
-      this.dataSource = new MatTableDataSource<Patient>(data._embedded.patients);
+      this.dataSource = new MatTableDataSource<Patient>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       console.log(this.dataSource);

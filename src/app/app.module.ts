@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidnavListComponent } from './navigation/sidnav-list/sidnav-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowPrestationComponent } from './prestations/show-prestation/show-prestation.component';
 import { AddPrestationComponent } from './prestations/add-prestation/add-prestation.component';
 import { PrestationAddedComponent } from './prestations/prestation-added/prestation-added.component';
