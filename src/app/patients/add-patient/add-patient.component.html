@@ -12,14 +12,14 @@
 
         <mat-form-field   >
           <mat-label>Nom:</mat-label>
-          <input matInput name="nom" ngModel #nom="ngModel">
+          <input matInput name="nom" ngModel  #nom="ngModel">
           <mat-hint>*</mat-hint>
           <mat-error *ngIf="nom.invalid">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
 
         <mat-form-field   >
           <mat-label>Prenom:</mat-label>
-          <input matInput name="prenom" ngModel #prenom="ngModel">
+          <input matInput name="prenom"  ngModel #prenom="ngModel">
           <mat-hint>*</mat-hint>
           <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
@@ -28,13 +28,16 @@
           <mat-form-field >
             <mat-label>Telephone</mat-label>
             <span matPrefix>+212 &nbsp;</span>
-            <input matInput type="tel" name="tel" ngModel  placeholder="655533205">
+            <input matInput type="tel" name="tel" minlength="10" maxlength="10" ngModel ngModel #tel="ngModel"
+                   pattern="^((\\+212-?)|0)?[0-9]{10}$" placeholder="0655533205">
             <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="tel.invalid">Données erronées.</mat-error>
+
           </mat-form-field>
 
-        <mat-form-field id="date">
+        <mat-form-field>
           <mat-label>Date de naissance</mat-label>
-          <input matInput name="date_naissance" ngModel [matDatepicker]="picker" #date_naissance="ngModel">
+          <input matInput name="date_naissance" ngModel [matDatepicker]="picker"  ngModel #date_naissance="ngModel">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-hint>*</mat-hint>
@@ -44,9 +47,10 @@
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput [formControl]="emailFormControl" name="email" ngModel
-          [errorStateMatcher]="matcher" placeholder="Ex. pat@gmail.com">
-          <mat-error *ngIf="emailFormControl.hasError('email')">
+          <input matInput  name="email" ngModel #email="ngModel"
+           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+           placeholder="Ex. pat@gmail.com">
+          <mat-error *ngIf="email.invalid">
             Veuillez entrer une adresse email valide
           </mat-error>
         </mat-form-field>
@@ -95,7 +99,7 @@
         <br>
 
         <div class="example-button-row">
-         <button mat-raised-button color='primary' [mat-dialog-close] type="submit">Valider</button>
+         <button mat-raised-button color='primary'[disabled]="!patientForm.form.valid" [mat-dialog-close] type="submit">Valider</button>
          <button mat-raised-button color='primary' [mat-dialog-close] >Annuler</button>
         </div>
 

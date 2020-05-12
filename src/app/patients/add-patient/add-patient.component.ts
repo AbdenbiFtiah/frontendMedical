@@ -26,6 +26,7 @@ export class AddPatientComponent {
   onAddPatient(value: any) {
     console.log(value);
     value.mutuel = JSON.parse("{\"id\":"+value.mutuel+" }");
+    value.tel=Number.parseInt("0"+""+value.tel);
     this.ressourceService.saveRessource(this.ressourceService.host + '/patients', value)
     .subscribe(res => {
     }, err => {

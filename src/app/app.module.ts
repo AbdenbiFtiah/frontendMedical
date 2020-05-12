@@ -37,6 +37,7 @@ import { FooterComponent } from './navigation/footer/footer.component';
     MaterialModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
