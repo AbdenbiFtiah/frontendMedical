@@ -1,0 +1,10 @@
+<form [formGroup]="rendezVousForm" (ngSubmit)="onSubmit()">
+
+  <input type="text" formControlName="date">
+  <br>
+  <input type="text" formControlName="nom">
+  <br>
+  <input type="text" formControlName="details">
+  <br>
+<button type="submit">ok</button>
+</form>

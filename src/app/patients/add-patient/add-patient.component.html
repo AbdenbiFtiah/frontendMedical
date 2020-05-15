@@ -8,69 +8,68 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form #patientForm="ngForm" (ngSubmit)="onAddPatient(patientForm.value)">
+      <form [formGroup]="patientForm" (ngSubmit)="onAddPatient()">
 
         <mat-form-field   >
           <mat-label>Nom:</mat-label>
-          <input matInput name="nom" ngModel  #nom="ngModel">
+          <input matInput formControlName="nom">
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="nom.invalid">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
 
         <mat-form-field   >
           <mat-label>Prenom:</mat-label>
-          <input matInput name="prenom"  ngModel #prenom="ngModel">
+          <input matInput formControlName="prenom">
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
           <mat-form-field >
             <mat-label>Telephone</mat-label>
             <span matPrefix>+212 &nbsp;</span>
-            <input matInput type="tel" name="tel" minlength="10" maxlength="10" ngModel ngModel #tel="ngModel"
+            <input matInput type="tel" formControlName="tel" minlength="10" maxlength="10"
                    pattern="^((\\+212-?)|0)?[0-9]{10}$" placeholder="0655533205">
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="tel.invalid">Données erronées.</mat-error>
+            <mat-error *ngIf="">Données erronées.</mat-error>
 
           </mat-form-field>
 
         <mat-form-field>
           <mat-label>Date de naissance</mat-label>
-          <input matInput name="date_naissance" ngModel [matDatepicker]="picker"  ngModel #date_naissance="ngModel">
+          <input matInput formControlName="date_naissance"  [matDatepicker]="picker"  >
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="date_naissance.invalid">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput  name="email" ngModel #email="ngModel"
+          <input matInput  formControlName="email"
            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
            placeholder="Ex. pat@gmail.com">
-          <mat-error *ngIf="email.invalid">
+          <mat-error *ngIf="">
             Veuillez entrer une adresse email valide
           </mat-error>
         </mat-form-field>
 
         <mat-form-field   >
           <mat-label>Adresse:</mat-label>
-          <input matInput name="adresse" ngModel #adresse="ngModel">
+          <input matInput formControlName="adresse">
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
         <mat-form-field   >
           <mat-label>Identifiant:</mat-label>
-          <input matInput name="identification" ngModel #identification="ngModel">
+          <input matInput formControlName="identification">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Type d'identifiant</mat-label>
-          <mat-select name="typeId" ngModel  #typeId="ngModel">
+          <mat-select formControlName="typeId">
             <mat-option value="CIN">CIN</mat-option>
             <mat-option value="Permis">Permis</mat-option>
             <mat-option value="Passeport">Passeport</mat-option>
@@ -79,7 +78,7 @@
         <br>
         <mat-form-field appearance="fill">
           <mat-label>Mutuelle</mat-label>
-          <mat-select name="mutuel" ngModel  #mutuel="ngModel">
+          <mat-select formControlName="mutuel">
             <mat-option value="">Aucune</mat-option>
             <mat-option value="1">Cnss</mat-option>
             <mat-option value="2">Cnops</mat-option>
@@ -89,17 +88,17 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Sexe</mat-label>
-          <mat-select name="sexe" ngModel  #sexe="ngModel">
+          <mat-select formControlName="sexe">
             <mat-option value="Homme">Homme</mat-option>
             <mat-option value="Femme">Femme</mat-option>
           </mat-select>
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="prenom.invalid">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
         <div class="example-button-row">
-         <button mat-raised-button color='primary'[disabled]="!patientForm.form.valid" [mat-dialog-close] type="submit">Valider</button>
+         <button mat-raised-button color='primary'[disabled]="" [mat-dialog-close] type="submit">Valider</button>
          <button mat-raised-button color='primary' [mat-dialog-close] >Annuler</button>
         </div>
 
