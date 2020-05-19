@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Patient } from 'src/app/models/patient';
 import { MatDialog } from '@angular/material/dialog';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { RessourceService } from 'src/app/services/ressource.service';
 
 @Component({
   selector: 'app-show-patients',
@@ -32,15 +33,16 @@ export class ShowPatientsComponent implements OnInit {
   expandedElement: Patient | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private patientService: PatientService, private dialog: MatDialog) { }
+  constructor(
+      private ressourceService: RessourceService,
+      private patientService: PatientService,
+      private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.patientService.getPatients().subscribe((data) => {
       this.dataSource = new MatTableDataSource<Patient>(data);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      console.log(this.dataSource);
-    },
+      this.dataSource.sort = this.sort;},
     (err) => {
       console.log(err);
     }
@@ -54,5 +56,20 @@ export class ShowPatientsComponent implements OnInit {
   openPatientDialog(){
     const dialogRef = this.dialog.open(AddPatientComponent,{width: '700px',data: {}});
   }
-//
+  deletePatient(patient: Patient){
+      this.ressourceService.deleteRessource(this.ressourceService.host +'patients/'+ patient.id).subscribe(res => {
+      this.dataSource=this.patientService.getPatients();
+      console.log(patient);
+
+      }, err => {
+        console.log(err);
+      });
+
+
+    }
+
+  updatePatient(){
+
+  }
+
 }

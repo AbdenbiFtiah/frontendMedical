@@ -1,7 +1,8 @@
 import { RessourceService } from './../../services/ressource.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, RequiredValidator, FormBuilder } from '@angular/forms';
+import { PatientAddedComponent } from '../patient-added/patient-added.component';
 
 @Component({
   selector: 'app-add-patient',
@@ -9,39 +10,44 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./add-patient.component.css'],
 })
 
-export class AddPatientComponent {
+export class AddPatientComponent implements OnInit{
   patientForm = new FormGroup({
-    nom: new FormControl(''),
-    prenom: new FormControl(''),
-    mutuel: new FormControl(''),
-    tel: new FormControl(''),
-    date_naissance: new FormControl(''),
-    identification: new FormControl(''),
-    typeId: new FormControl(''),
-    sexe: new FormControl(''),
-    adresse: new FormControl(''),
-    email: new FormControl(''),
 
 
   });
 
-  constructor(private ressourceService : RessourceService) {}
+  constructor(private dialog: MatDialog,private ressourceService: RessourceService, private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.patientForm = this.formBuilder.group({
+      nom: ['ae', Validators.required] ,
+      prenom: ['aza', Validators.required],
+      mutuel: [''],
+      tel: ['0232232323', Validators.pattern('^((\\+212-?)|0)?[0-9]{10}$')],
+      date_naissance: ['', Validators.required],
+      identification: [''],
+      typeId: [''],
+      sexe: ['', Validators.required],
+      adresse: ['fefef', Validators.required],
+      email: ['ffef@feef.fe', Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')],
+    })
+  }
 
    onAddPatient() {
      console.log(this.patientForm.value);
-     this.patientForm.value.mutuel = JSON.parse("{\"id\":"+this.patientForm.value.mutuel+" }");
-    this.ressourceService.saveRessource(this.ressourceService.host + '/patients',this.patientForm.value)
+     this.patientForm.value.mutuel = JSON.parse('{"id":' + this.patientForm.value.mutuel + ' }');
+     this.ressourceService.saveRessource(this.ressourceService.host + 'patients', this.patientForm.value)
     .subscribe(res => {
     }, err => {
       console.log(err);
     });
    }
 
-  //   openAddedPrestationDialog(){
-  //     const dialogRef= this.dialog.open(PrestationAddedComponent,{
-  //       width: '700px',
-  //       data: {}
-  //     });
+    openAddedPatientDialog(){
+      const dialogRef = this.dialog.open(PatientAddedComponent,{
+        width: '700px',
+        data: {}
+      });
 
-  // }
+  }
 }

@@ -12,26 +12,25 @@
 
         <mat-form-field   >
           <mat-label>Nom:</mat-label>
-          <input matInput formControlName="nom">
+          <input matInput  formControlName="nom">
           <mat-hint>*</mat-hint>
+          <mat-error *ngIf="patientForm.controls['nom'].hasError('required')" >Ce champ est obligatoire.</mat-error>
         </mat-form-field>
 
         <mat-form-field   >
           <mat-label>Prenom:</mat-label>
           <input matInput formControlName="prenom">
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="patientForm.controls['prenom'].hasError('required')">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
           <mat-form-field >
             <mat-label>Telephone</mat-label>
             <span matPrefix>+212 &nbsp;</span>
-            <input matInput type="tel" formControlName="tel" minlength="10" maxlength="10"
-                   pattern="^((\\+212-?)|0)?[0-9]{10}$" placeholder="0655533205">
+            <input matInput type="tel" formControlName="tel" placeholder="0655533205">
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="">Données erronées.</mat-error>
-
+            <mat-error *ngIf="patientForm.controls['tel'].hasError('pattern')">Données erronées.</mat-error>
           </mat-form-field>
 
         <mat-form-field>
@@ -40,16 +39,14 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="patientForm.controls['date_naissance'].hasError('required')">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput  formControlName="email"
-           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-           placeholder="Ex. pat@gmail.com">
-          <mat-error *ngIf="">
+          <input matInput  formControlName="email" placeholder="Ex. pat@gmail.com">
+          <mat-error *ngIf="patientForm.controls['email'].hasError('pattern')">
             Veuillez entrer une adresse email valide
           </mat-error>
         </mat-form-field>
@@ -58,7 +55,7 @@
           <mat-label>Adresse:</mat-label>
           <input matInput formControlName="adresse">
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="patientForm.controls['adresse'].hasError('required')">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
@@ -79,7 +76,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Mutuelle</mat-label>
           <mat-select formControlName="mutuel">
-            <mat-option value="">Aucune</mat-option>
+            <mat-option value="0">Aucune</mat-option>
             <mat-option value="1">Cnss</mat-option>
             <mat-option value="2">Cnops</mat-option>
             <mat-option value="3">Amo</mat-option>
@@ -93,12 +90,12 @@
             <mat-option value="Femme">Femme</mat-option>
           </mat-select>
           <mat-hint>*</mat-hint>
-          <mat-error *ngIf="">Ce champ est obligatoire.</mat-error>
+          <mat-error *ngIf="patientForm.controls['sexe'].hasError('required')">Ce champ est obligatoire.</mat-error>
         </mat-form-field>
         <br>
 
         <div class="example-button-row">
-         <button mat-raised-button color='primary'[disabled]="" [mat-dialog-close] type="submit">Valider</button>
+         <button mat-raised-button color='primary'[disabled]="!patientForm.valid" (click)="openAddedPatientDialog()" [mat-dialog-close] type="submit">Valider</button>
          <button mat-raised-button color='primary' [mat-dialog-close] >Annuler</button>
         </div>
 

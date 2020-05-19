@@ -1,0 +1,10 @@
+<mat-toolbar> <mat-icon>done</mat-icon>Patient ajouté avec succée</mat-toolbar>
+
+<mat-toolbar><button mat-raised-button (click)="openPatientDialog()" color="primary">
+  <mat-icon>add</mat-icon>Nouveau patient
+</button></mat-toolbar>
+
+<mat-toolbar><button mat-raised-button [mat-dialog-close] color="primary" routerLink="/Patients">
+  Afficher les patients
+</button></mat-toolbar>
+

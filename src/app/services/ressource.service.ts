@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RessourceService {
 
-  host='http://localhost:8090';
+  host='http://localhost:8090/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -14,9 +14,13 @@ export class RessourceService {
     return this.httpClient.post(url,data);
   }
 
-  
-deleteRessource(url){
+
+  deleteRessource(url){
     return this.httpClient.delete(url);
 
+  }
+
+  updateRessource(url, data){
+   return this.httpClient.put(url, data);
   }
 }

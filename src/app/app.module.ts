@@ -15,6 +15,8 @@ import { ShowPatientsComponent } from './patients/show-patients/show-patients.co
 import { AddPatientComponent } from './patients/add-patient/add-patient.component';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { AddRendezVousComponent } from './rendezVous/add-rendez-vous/add-rendez-vous.component';
+import { PatientAddedComponent } from './patients/patient-added/patient-added.component';
+
 
 
 
@@ -31,6 +33,7 @@ import { AddRendezVousComponent } from './rendezVous/add-rendez-vous/add-rendez-
     AddPatientComponent,
     FooterComponent,
     AddRendezVousComponent,
+    PatientAddedComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,10 @@ import { AddRendezVousComponent } from './rendezVous/add-rendez-vous/add-rendez-
   exports: [ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[ AddPrestationComponent, PrestationAddedComponent, AddPatientComponent]
+  entryComponents: [
+      AddPrestationComponent,
+      PrestationAddedComponent,
+      AddPatientComponent,
+      PatientAddedComponent]
 })
 export class AppModule { }
