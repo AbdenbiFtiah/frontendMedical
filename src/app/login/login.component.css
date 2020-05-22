@@ -1,0 +1,23 @@
+
+.mat-card-header{
+  margin-left: 4em;
+}
+
+.main-card {
+  margin: auto;
+  width: 30%;
+
+}
+mat-form-field{
+  width: 50%;
+  margin-left: 4em;
+}
+button{
+  margin-left: 4em;
+  margin-top: 3em;
+}
+
+.example-button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}

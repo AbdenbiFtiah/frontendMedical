@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { AddRendezVousComponent } from './rendezVous/add-rendez-vous/add-rendez-vous.component';
 import { PrestationAddedComponent } from './prestations/prestation-added/prestation-added.component';
 import { ShowPrestationComponent } from './prestations/show-prestation/show-prestation.component';
@@ -9,10 +10,15 @@ import { ShowPatientsComponent } from './patients/show-patients/show-patients.co
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'prestations', pathMatch: 'full'},
+  {path: '', redirectTo: 'Login', pathMatch: 'full'},
   {path: 'Prestations', component: ShowPrestationComponent},
   {path: 'Patients', component: ShowPatientsComponent},
   {path: 'RendezVous', component: AddRendezVousComponent},
+  {path: 'Login', component: LoginComponent},
+  {path: 'Inscription', redirectTo: ''},
+
+
+
   // {path: 'add-prestation', component: AddPrestationComponent},
   // {path: 'prestationAdded', component: PrestationAddedComponent},
 

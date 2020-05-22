@@ -1,3 +1,5 @@
+import { ShowPatientsComponent } from './../show-patients/show-patients.component';
+import { PatientService } from './../../services/patient.service';
 import { RessourceService } from './../../services/ressource.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +18,10 @@ export class AddPatientComponent implements OnInit{
 
   });
 
-  constructor(private dialog: MatDialog,private ressourceService: RessourceService, private formBuilder: FormBuilder) {}
+  constructor(private dialog: MatDialog,
+              private ressourceService: RessourceService,
+              private formBuilder: FormBuilder,
+              private patientService: PatientService) {}
 
   ngOnInit(): void {
     this.patientForm = this.formBuilder.group({
@@ -38,6 +43,8 @@ export class AddPatientComponent implements OnInit{
      this.patientForm.value.mutuel = JSON.parse('{"id":' + this.patientForm.value.mutuel + ' }');
      this.ressourceService.saveRessource(this.ressourceService.host + 'patients', this.patientForm.value)
     .subscribe(res => {
+      //how to call a function from another component
+      // ShowPatientsComponent.l
     }, err => {
       console.log(err);
     });

@@ -30,11 +30,11 @@
             <span class="example-element-description-attribution">Mutuel: </span>{{element.mutuel.nom}} <br>
             <span class="example-element-description-attribution">Email: </span>{{element.email}}
           </div>
-          <div class="example-button-row, example-element-description">
+          <div *ngIf="isAdmin()" class="example-button-row, example-element-description">
             <button mat-raised-button (click)="deletePatient(element)" color="warn" ><mat-icon>delete</mat-icon></button>
           </div>
-          <div class="example-button-row, example-element-description">
-            <button mat-raised-button (click)="updatePatient()" color="basic" ><mat-icon>edit</mat-icon></button>
+          <div *ngIf="isAdmin()" class="example-button-row, example-element-description">
+            <button mat-raised-button (click)="openPatientDialog()"  color="basic" ><mat-icon>edit</mat-icon></button>
           </div>
         </div>
       </td>

@@ -1,0 +1,35 @@
+<div class="container">
+
+  <mat-card class="main-card">
+
+    <mat-card-header>
+      <mat-card-title>Nouvelle connexion</mat-card-title>
+      <mat-card-subtitle>Veuillez saisir votre surnom et mot de passe</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #loginForm="ngForm"  (ngSubmit)="onLogin(loginForm.value)">
+
+        <mat-form-field   >
+          <mat-label>Login:</mat-label>
+          <input matInput ngModel type="text"  name="login">
+          <mat-error ></mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field   >
+          <mat-label>Mot de passe:</mat-label>
+          <input matInput ngModel type="password" name="password">
+          <mat-error ></mat-error>
+        </mat-form-field>
+        <br>
+
+        <div class="example-button-row">
+         <button mat-raised-button color='primary'  type="submit">Se connecter</button>
+         <button mat-raised-button color='primary' routerLink="/Inscription"  type="">S'inscrire</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

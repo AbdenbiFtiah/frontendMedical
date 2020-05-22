@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/authentication.service';
 import { AddPatientComponent } from './../add-patient/add-patient.component';
 import { PatientService } from './../../services/patient.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -36,17 +37,11 @@ export class ShowPatientsComponent implements OnInit {
   constructor(
       private ressourceService: RessourceService,
       private patientService: PatientService,
-      private dialog: MatDialog) { }
+      private dialog: MatDialog,
+      private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.patientService.getPatients().subscribe((data) => {
-      this.dataSource = new MatTableDataSource<Patient>(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;},
-    (err) => {
-      console.log(err);
-    }
-  );
+this.loadPatients();
 
   }
   applyFilter(event: Event) {
@@ -56,6 +51,18 @@ export class ShowPatientsComponent implements OnInit {
   openPatientDialog(){
     const dialogRef = this.dialog.open(AddPatientComponent,{width: '700px',data: {}});
   }
+
+ public loadPatients(){
+  this.patientService.getPatients().subscribe((data) => {
+    this.dataSource = new MatTableDataSource<Patient>(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;},
+  (err) => {
+    console.log(err);
+  }
+);
+}
+
   deletePatient(patient: Patient){
       this.ressourceService.deleteRessource(this.ressourceService.host +'patients/'+ patient.id).subscribe(res => {
       this.dataSource=this.patientService.getPatients();
@@ -71,5 +78,10 @@ export class ShowPatientsComponent implements OnInit {
   updatePatient(){
 
   }
+
+  isAdmin(){
+    return this.authenticationService.isAdmin();
+  }
+
 
 }

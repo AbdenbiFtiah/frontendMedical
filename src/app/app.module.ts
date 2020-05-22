@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidnavListComponent } from './navigation/sidnav-list/sidnav-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ShowPrestationComponent } from './prestations/show-prestation/show-prestation.component';
 import { AddPrestationComponent } from './prestations/add-prestation/add-prestation.component';
 import { PrestationAddedComponent } from './prestations/prestation-added/prestation-added.component';
@@ -16,6 +16,7 @@ import { AddPatientComponent } from './patients/add-patient/add-patient.componen
 import { FooterComponent } from './navigation/footer/footer.component';
 import { AddRendezVousComponent } from './rendezVous/add-rendez-vous/add-rendez-vous.component';
 import { PatientAddedComponent } from './patients/patient-added/patient-added.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -34,6 +35,7 @@ import { PatientAddedComponent } from './patients/patient-added/patient-added.co
     FooterComponent,
     AddRendezVousComponent,
     PatientAddedComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { PatientAddedComponent } from './patients/patient-added/patient-added.co
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [ReactiveFormsModule],
   providers: [],
