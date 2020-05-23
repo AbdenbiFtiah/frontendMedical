@@ -1,52 +1,78 @@
+import { element } from 'protractor';
+import { Utilisateur } from './../models/utilisateur';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
+  private users;
 
-  private users = [
-    {username: 'admin', password: 'admin', roles: ['ADMIN', 'USER']},
-    {username: 'user1', password: 'user', roles: ['USER']},
-    {username: 'user2', password: 'user', roles: ['USER']},
-
-  ];
+  private userData = this.http
+    .get<Utilisateur[]>('http://localhost:8090/users')
+    .subscribe(
+      (data) => {
+        this.users = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
 
   public isAuthenticated: Boolean;
   public userAuthenticated;
-  public token;
-  constructor() { }
+  public token: string;
 
-  public login(username: String, password: String){
+  constructor(private http: HttpClient) {}
+
+  public login(username: String, password: String) {
     let user;
-    this.users.forEach(u => {
-      if (u.username == username && u.password == password) {
+    this.users.forEach((u) => {
+      if (u.login == username && u.password == password) {
         user = u;
-        this.token={username:u.username, roles: u.roles};
-     }
+        this.token = btoa(
+          JSON.stringify({ username: u.login, roles: u.roles[0].name })
+        );
+      }
     });
-    if (user){
+    if (user) {
       this.isAuthenticated = true;
       this.userAuthenticated = user;
-     }
-     else{
-       this.isAuthenticated = false;
-       this.userAuthenticated = undefined;
-     }
-
+    } else {
+      this.isAuthenticated = false;
+      this.userAuthenticated = undefined;
+    }
   }
-  public isAdmin(){
-    if (this.userAuthenticated){
-      if (this.userAuthenticated.roles.indexOf('ADMIN') > -1){
+  public isAdmin() {
+    if (this.userAuthenticated) {
+      console.log(this.userAuthenticated);
+      if ( this.userAuthenticated.roles == 'ADMIN' || this.userAuthenticated.roles[0].name == 'ADMIN') {
         return true;
       }
       return false;
     }
   }
 
-  public saveAuthenticatedUser(){
-    if(this.userAuthenticated){
-      localStorage.setItem('authToken',JSON.stringify(this.token));
+  public saveAuthenticatedUser() {
+    if (this.userAuthenticated) {
+      localStorage.setItem('authToken', this.token);
     }
+  }
+
+  public loadAuthenticatedUser() {
+    let token = localStorage.getItem('authToken');
+    if (token) {
+      let user = JSON.parse(atob(token));
+      this.userAuthenticated = { username: user.username, roles: user.roles };
+      this.isAuthenticated = true;
+    }
+  }
+
+  public removeToken() {
+    localStorage.removeItem('authToken');
+    this.isAuthenticated = false;
+    this.userAuthenticated = undefined;
+    this.token = undefined;
   }
 }

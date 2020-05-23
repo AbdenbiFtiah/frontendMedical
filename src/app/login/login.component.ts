@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authenticationService.removeToken();
   }
   onLogin(loginData){
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ShowPatientsComponent } from './../show-patients/show-patients.component';
 import { PatientService } from './../../services/patient.service';
 import { RessourceService } from './../../services/ressource.service';
@@ -20,8 +21,7 @@ export class AddPatientComponent implements OnInit{
 
   constructor(private dialog: MatDialog,
               private ressourceService: RessourceService,
-              private formBuilder: FormBuilder,
-              private patientService: PatientService) {}
+              private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.patientForm = this.formBuilder.group({
@@ -44,8 +44,7 @@ export class AddPatientComponent implements OnInit{
      this.ressourceService.saveRessource(this.ressourceService.host + 'patients', this.patientForm.value)
     .subscribe(res => {
       //how to call a function from another component
-      // ShowPatientsComponent.l
-    }, err => {
+          }, err => {
       console.log(err);
     });
    }
